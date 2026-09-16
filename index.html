@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>SEO 学习中心</title>
+<meta name="description" content="SEO 系统课程：WordPress 与 AI 建站、Semrush 关键词调研、内容与页面优化、GSC 站长工具，44 节课按学习阶段分区。">
+
+<!-- 主题预设：在首次绘制前定下明暗，避免深色模式闪白；首次访问跟随系统偏好 -->
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('seo-home-theme');
+    if (t !== 'light' && t !== 'dark') {
+      t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+
+<!-- 图标 -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111418" media="(prefers-color-scheme: dark)">
+
+<!-- 分享预览 -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SEO 学习中心">
+<meta property="og:title" content="SEO 学习中心 · 从建站到排名">
+<meta property="og:description" content="WordPress 与 AI 建站、Semrush 关键词调研、内容与页面优化、GSC 站长工具，44 节课按学习阶段分区。">
+<meta property="og:url" content="https://seo.chrisgao1219.com/">
+<meta property="og:image" content="https://seo.chrisgao1219.com/avatar.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SEO 学习中心 · 从建站到排名">
+<meta name="twitter:description" content="WordPress 与 AI 建站、Semrush 关键词调研、内容与页面优化、GSC 站长工具，44 节课按学习阶段分区。">
+<meta name="twitter:image" content="https://seo.chrisgao1219.com/avatar.jpg">
+<link rel="canonical" href="https://seo.chrisgao1219.com/">
+
+<style>
+  :root {
+    --accent: #334155;
+    --accent-strong: #1e293b;
+    --accent-soft: #eef1f5;
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --text: #1a1e24;
+    --text-dim: #6b7280;
+    --border: #e5e7eb;
+    --border-strong: #d1d5db;
+    --shadow: 0 1px 3px rgba(15,23,42,.06), 0 1px 2px rgba(15,23,42,.04);
+    --radius: 14px;
+  }
+  [data-theme="dark"] {
+    --accent: #94a3b8;
+    --accent-strong: #cbd5e1;
+    --accent-soft: #1f242c;
+    --bg: #111418;
+    --card: #191d24;
+    --text: #e9edf2;
+    --text-dim: #9aa3b0;
+    --border: #2a2f38;
+    --border-strong: #3a414d;
+    --shadow: 0 1px 3px rgba(0,0,0,.4);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* 顶部栏 */
+  .topbar {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--card);                                          /* 回退：不支持 color-mix 的浏览器 */
+    background: color-mix(in srgb, var(--card) 90%, transparent);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar-inner {
+    max-width: 1080px; margin: 0 auto; padding: 14px 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15.5px; white-space: nowrap; }
+  .logo .logo-mark { width: 24px; height: 24px; flex-shrink: 0; }
+  .spacer { flex: 1; }
+  .icon-btn {
+    display: flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px;
+    border: 1px solid var(--border); background: var(--card); color: var(--text-dim);
+    border-radius: 9px; cursor: pointer; transition: color .2s, border-color .2s;
+  }
+  .icon-btn:hover { color: var(--text); border-color: var(--border-strong); }
+  [data-theme="light"] .icon-sun { display: none; }
+  [data-theme="dark"] .icon-moon { display: none; }
+
+  /* 姊妹站点互跳 */
+  .site-links { display: flex; align-items: center; gap: 8px; }
+  .site-link {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 7px 13px;
+    border: 1px solid var(--border); background: var(--card); color: var(--text-dim);
+    border-radius: 999px; font-size: 13px; font-weight: 600;
+    text-decoration: none; white-space: nowrap;
+    transition: color .18s, border-color .18s;
+  }
+  .site-link:hover { color: var(--text); border-color: var(--border-strong); }
+  .site-link .site-link-mark { font-size: 14px; line-height: 1; }
+  .site-link svg { transition: transform .18s; flex-shrink: 0; }
+  .site-link:hover svg { transform: translateX(2px); }
+
+  /* Hero */
+  .hero {
+    max-width: 1080px; margin: 0 auto; padding: 64px 24px 12px;
+    text-align: center;
+  }
+  .hero .eyebrow {
+    display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--accent-strong);
+    background: var(--accent-soft); border-radius: 999px; padding: 4px 14px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 40px; font-weight: 800; letter-spacing: -.03em; line-height: 1.15;
+    margin: 0 0 16px;
+  }
+  .hero p { color: var(--text-dim); font-size: 16px; max-width: 640px; margin: 0 auto; }
+  .hero .count {
+    margin-top: 22px; font-size: 13px; color: var(--text-dim);
+  }
+
+  /* 阶段切换 */
+  .tabs {
+    max-width: 1080px; margin: 34px auto 0; padding: 0 24px;
+    display: flex; gap: 9px; flex-wrap: wrap; justify-content: center;
+  }
+  .tab {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px;
+    border: 1px solid var(--border); background: var(--card); color: var(--text-dim);
+    border-radius: 999px; font: inherit; font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: color .18s, border-color .18s, background .18s;
+  }
+  .tab:hover { border-color: var(--border-strong); color: var(--text); }
+  .tab[aria-selected="true"] {
+    background: var(--tab-color, var(--accent));
+    border-color: var(--tab-color, var(--accent));
+    color: #fff;
+  }
+  .tab-count {
+    font-size: 11.5px; font-weight: 700; line-height: 1.6;
+    background: var(--accent-soft); color: var(--text-dim);
+    border-radius: 999px; padding: 0 7px;
+    font-variant-numeric: tabular-nums;
+  }
+  .tab[aria-selected="true"] .tab-count { background: rgba(255,255,255,.24); color: #fff; }
+
+  /* 分组标题 */
+  .group-label {
+    max-width: 1080px; margin: 40px auto 0; padding: 0 24px;
+    font-size: 13px; font-weight: 700; letter-spacing: .04em;
+    color: var(--text-dim);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .group-label .dot {
+    width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+    background: var(--panel-color, var(--accent));
+  }
+  .group-label span { color: var(--accent-strong); }
+
+  /* 卡片网格 */
+  .grid {
+    max-width: 1080px; margin: 0 auto; padding: 18px 24px 6px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 14px;
+  }
+  .card {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 15px 16px; width: 100%;
+    font: inherit; color: inherit; text-align: left; cursor: pointer;
+    transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .card:hover { transform: translateY(-2px); border-color: var(--border-strong); box-shadow: var(--shadow); }
+  .card:focus-visible { outline: 2px solid var(--c, var(--accent)); outline-offset: 2px; }
+  /* 还没填 Drive ID 的条目：降透明度，但保留可点（点了给提示） */
+  .card[data-pending="1"] { opacity: .55; }
+  .card[data-pending="1"]:hover { opacity: .8; }
+  .card-num {
+    width: 42px; height: 42px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 11px; background: var(--c, var(--accent)); color: #fff;
+    font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums;
+  }
+  .card-body { flex: 1; min-width: 0; }
+  .card-title {
+    font-weight: 700; font-size: 14.5px; line-height: 1.45;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card-sub { font-size: 12.5px; color: var(--text-dim); line-height: 1.5; margin-top: 2px; }
+  .card-play {
+    flex-shrink: 0; width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; border: 1px solid var(--border); color: var(--text-dim);
+    transition: color .15s, background .15s, border-color .15s;
+  }
+  .card:hover .card-play { color: #fff; background: var(--c, var(--accent)); border-color: var(--c, var(--accent)); }
+  /* 类型徽标：文档 / 图文 */
+  .card-kind {
+    display: inline-block; margin-left: 7px; vertical-align: 1px;
+    font-size: 10.5px; font-weight: 700; letter-spacing: .04em;
+    padding: 1px 6px; border-radius: 5px;
+    background: var(--accent-soft); color: var(--text-dim);
+  }
+  [data-theme="dark"] .card-kind { background: #262c35; }
+
+  /* 页脚 */
+  .footer {
+    max-width: 1080px; margin: 0 auto; padding: 48px 24px 64px;
+    text-align: center; color: var(--text-dim); font-size: 13px;
+  }
+  .footer a { color: var(--text-dim); }
+
+  /* 视频弹窗 */
+  .modal {
+    position: fixed; inset: 0; z-index: 200;
+    display: none; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .modal.open { display: flex; }
+  .modal-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(8,10,14,.74);
+    -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+  }
+  .modal-box {
+    position: relative; width: 100%; max-width: 940px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0,0,0,.42);
+  }
+  .modal-head {
+    display: flex; align-items: center; gap: 12px;
+    padding: 13px 14px 13px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .modal-title {
+    flex: 1; min-width: 0; font-size: 14.5px; font-weight: 700;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .modal-title .idx { color: var(--text-dim); font-weight: 600; margin-right: 6px; }
+  .modal-player { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+  .modal-player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  /* 轻提示 */
+  .toast {
+    position: fixed; left: 50%; bottom: 32px; transform: translate(-50%, 12px);
+    z-index: 300; max-width: calc(100% - 32px);
+    background: var(--text); color: var(--bg);
+    padding: 11px 18px; border-radius: 10px;
+    font-size: 13.5px; font-weight: 600;
+    opacity: 0; pointer-events: none;
+    transition: opacity .2s, transform .2s;
+    box-shadow: 0 8px 28px rgba(0,0,0,.28);
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 700px) {
+    .hero { padding: 44px 20px 8px; }
+    .hero h1 { font-size: 29px; }
+    .tabs { margin-top: 26px; padding: 0 16px; gap: 7px; }
+    .tab { padding: 9px 14px; font-size: 13px; }
+    .site-link { padding: 7px 11px; }
+    .site-link .site-link-label { display: none; }
+    .group-label { padding: 0 16px; margin-top: 32px; }
+    .grid { padding: 14px 16px 4px; grid-template-columns: 1fr; }
+    .modal { padding: 0; align-items: flex-end; }
+    .modal-box { max-width: 100%; border-radius: 16px 16px 0 0; border-bottom: 0; }
+    .modal-title { font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="logo">
+      <img src="avatar.jpg" class="logo-mark" alt="Chris" style="border-radius:50%; object-fit:cover;">
+      <span>SEO 学习中心</span>
+    </div>
+    <div class="spacer"></div>
+    <nav class="site-links" aria-label="姊妹站点">
+      <a class="site-link" href="https://ai.chrisgao1219.com/">
+        <span class="site-link-mark">🎓</span>
+        <span class="site-link-label">AI 学习中心</span>
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="site-link" href="https://ads.chrisgao1219.com/">
+        <span class="site-link-mark">📈</span>
+        <span class="site-link-label">广告学习中心</span>
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </nav>
+    <button class="icon-btn" id="themeToggle" title="切换明暗主题" aria-label="切换明暗主题">
+      <svg class="icon-moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <span class="eyebrow">SEO 学习路径</span>
+    <h1>从建站到排名<br>一套完整的 SEO 教程</h1>
+    <p>WordPress 与 AI 建站、Semrush 关键词调研、内容与页面优化、站长工具配置——按学习阶段分区，点开即看。</p>
+    <div class="count" id="heroCount"></div>
+  </section>
+
+  <nav class="tabs" id="tabs" role="tablist" aria-label="学习阶段切换"></nav>
+
+  <div id="panels"></div>
+</main>
+
+<footer class="footer">
+  <a href="https://chrisgao1219.com/">chrisgao1219.com</a> · SEO 学习中心
+</footer>
+
+<!-- 视频弹窗 -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="内容播放">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-box">
+    <div class="modal-head">
+      <div class="modal-title" id="modalTitle"></div>
+      <button class="icon-btn" id="modalClose" title="关闭" aria-label="关闭">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-player" id="modalPlayer"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="videos.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- 学习阶段配置 ---------- */
+  var TABS = [
+    { key: 'build',   label: '建站',          color: '#2563eb' },
+    { key: 'keyword', label: '关键词调研',     color: '#d97706' },
+    { key: 'content', label: '内容与页面优化', color: '#059669' },
+    { key: 'tools',   label: '站长工具与进阶', color: '#7c3aed' }
+  ];
+
+  /* 分组展示顺序与说明（顺序对齐课程章节） */
+  var GROUP_ORDER = {
+    build:   ['SEO 导学篇', 'WordPress 建站教程', 'AI 建站与 Astro 架构'],
+    keyword: ['解密 Semrush', '捕鱼模式关键词调研'],
+    content: ['页面优化 Title 和 Meta', 'AI 写内容及内容优化', '图片 SEO'],
+    tools:   ['谷歌站长 GSC / Bing / StatCounter', 'Yoast SEO 插件设置', '支柱页面与主题集群']
+  };
+  var GROUP_DESC = {
+    'SEO 导学篇':                          '先建立整体认知',
+    'WordPress 建站教程':                   '从买空间到做出询盘表单',
+    'AI 建站与 Astro 架构':                 'AI 辅助建站与 Cloudflare 部署',
+    '解密 Semrush':                        '一个工具打通 SEO 任督二脉',
+    '捕鱼模式关键词调研':                    '挖掘最多、最广的机会',
+    '页面优化 Title 和 Meta':               '搜索结果里的第一印象',
+    'AI 写内容及内容优化':                   '从选题到成稿再到打磨',
+    '图片 SEO':                            '让每张图都变成流量入口',
+    '谷歌站长 GSC / Bing / StatCounter':    '提交收录与数据跟踪',
+    'Yoast SEO 插件设置':                   '把站内 SEO 交给插件',
+    '支柱页面与主题集群':                    '内容架构的顶层设计'
+  };
+
+  /* ---------- 标题拆解：主标题 + 副标题 ---------- */
+  function splitTitle(text) {
+    var m = text.match(/^(.*?)[（(]([^（）()]+)[）)]\s*$/);
+    if (m) return { main: m[1].trim(), sub: m[2].trim() };
+    m = text.match(/^\[([^\]]+)\]\s*(.+)$/);
+    if (m) return { main: m[2].trim(), sub: m[1].trim() };
+    return { main: text, sub: '' };
+  }
+
+  /* ---------- 类型图标与徽标 ---------- */
+  var ICON_PLAY = '<svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M8 5.14v13.72a1 1 0 0 0 1.54.84l10.3-6.86a1 1 0 0 0 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14z"/></svg>';
+  var ICON_DOC  = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>';
+  var ICON_LINK = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>';
+  var KIND_LABEL = { doc: '文档', text: '图文' };
+  var KIND_ICON  = { doc: ICON_DOC, text: ICON_LINK };
+
+  function kindOf(v) { return v.type && v.type !== 'video' ? v.type : 'video'; }
+
+  /* ---------- 数据整理 ---------- */
+  var DATA = {};
+  TABS.forEach(function (t) { DATA[t.key] = []; });
+  (typeof VIDEOS !== 'undefined' ? VIDEOS : []).forEach(function (v) {
+    if (DATA[v.platform]) DATA[v.platform].push(v);
+  });
+
+  /* ---------- 渲染阶段切换 ---------- */
+  var tabsEl = document.getElementById('tabs');
+  var panelsEl = document.getElementById('panels');
+  var heroCount = document.getElementById('heroCount');
+
+  var total = 0;
+  TABS.forEach(function (t) { total += DATA[t.key].length; });
+  heroCount.textContent = '📚 共 ' + total + ' 节课 · ' +
+    TABS.map(function (t) { return t.label + ' ' + DATA[t.key].length + ' 节'; }).join(' · ');
+
+  TABS.forEach(function (t) {
+    var b = document.createElement('button');
+    b.className = 'tab';
+    b.type = 'button';
+    b.setAttribute('role', 'tab');
+    b.id = 'tab-' + t.key;
+    b.setAttribute('aria-controls', 'panel-' + t.key);
+    b.dataset.platform = t.key;
+    b.style.setProperty('--tab-color', t.color);
+    b.innerHTML = '<span></span><span class="tab-count">' + DATA[t.key].length + '</span>';
+    b.firstChild.textContent = t.label;
+    tabsEl.appendChild(b);
+  });
+
+  /* ---------- 渲染面板 ---------- */
+  TABS.forEach(function (t) {
+    var panel = document.createElement('div');
+    panel.className = 'panel';
+    panel.id = 'panel-' + t.key;
+    panel.setAttribute('role', 'tabpanel');
+    panel.setAttribute('aria-labelledby', 'tab-' + t.key);
+    panel.dataset.platform = t.key;
+    panel.style.setProperty('--panel-color', t.color);
+
+    var list = DATA[t.key];
+    var groups = {};
+    list.forEach(function (v) { (groups[v.group] = groups[v.group] || []).push(v); });
+
+    var order = GROUP_ORDER[t.key] || Object.keys(groups);
+    /* 兜底：数据里出现但未列入 order 的分组 */
+    Object.keys(groups).forEach(function (g) {
+      if (order.indexOf(g) === -1) order.push(g);
+    });
+
+    order.forEach(function (g) {
+      if (!groups[g] || !groups[g].length) return;
+
+      var label = document.createElement('div');
+      label.className = 'group-label';
+      var desc = GROUP_DESC[g] || '';
+      label.innerHTML = '<span class="dot"></span><span>' + g + '</span>' +
+        (desc ? ' — ' + desc : '');
+      panel.appendChild(label);
+
+      var grid = document.createElement('section');
+      grid.className = 'grid';
+      groups[g].forEach(function (v) {
+        grid.appendChild(makeCard(v, t.color));
+      });
+      panel.appendChild(grid);
+    });
+
+    panelsEl.appendChild(panel);
+  });
+
+  function makeCard(v, color) {
+    var st = splitTitle(v.title);
+    var kind = kindOf(v);
+    var pending = !v.id && !v.url;      /* 还没填 Drive ID，也没外链 */
+
+    var card = document.createElement('button');
+    card.className = 'card';
+    card.type = 'button';
+    card.style.setProperty('--c', color);
+    card.dataset.id = v.id || '';
+    card.dataset.url = v.url || '';
+    card.dataset.n = v.n;
+    card.dataset.title = v.title;
+    card.dataset.kind = kind;
+    if (pending) card.dataset.pending = '1';
+
+    var num = document.createElement('span');
+    num.className = 'card-num';
+    num.textContent = v.n;
+
+    var body = document.createElement('span');
+    body.className = 'card-body';
+    var title = document.createElement('span');
+    title.className = 'card-title';
+    title.textContent = st.main;
+    title.setAttribute('title', v.title);   /* 标题被 2 行截断时，悬停可看全文 */
+    if (KIND_LABEL[kind]) {
+      var badge = document.createElement('span');
+      badge.className = 'card-kind';
+      badge.textContent = KIND_LABEL[kind];
+      title.appendChild(badge);
+    }
+    body.appendChild(title);
+    if (st.sub) {
+      var sub = document.createElement('span');
+      sub.className = 'card-sub';
+      sub.textContent = st.sub;
+      body.appendChild(sub);
+    }
+
+    var play = document.createElement('span');
+    play.className = 'card-play';
+    play.innerHTML = KIND_ICON[kind] || ICON_PLAY;
+
+    card.appendChild(num);
+    card.appendChild(body);
+    card.appendChild(play);
+    return card;
+  }
+
+  /* ---------- 阶段切换逻辑 ---------- */
+  function selectPlatform(key, focusTab) {
+    if (!DATA[key]) key = TABS[0].key;
+    Array.prototype.forEach.call(tabsEl.children, function (b) {
+      var on = b.dataset.platform === key;
+      b.setAttribute('aria-selected', String(on));
+      b.tabIndex = on ? 0 : -1;          /* roving tabindex：只有当前页签能被 Tab 键聚焦 */
+      if (on && focusTab) b.focus();
+    });
+    Array.prototype.forEach.call(panelsEl.children, function (p) {
+      p.hidden = p.dataset.platform !== key;
+    });
+    try { localStorage.setItem('seo-home-platform', key); } catch (e) {}
+  }
+
+  tabsEl.addEventListener('click', function (e) {
+    var btn = e.target.closest('.tab');
+    if (btn) selectPlatform(btn.dataset.platform);
+  });
+
+  /* 方向键 / Home / End 切换页签（WAI-ARIA Tabs 模式） */
+  tabsEl.addEventListener('keydown', function (e) {
+    if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].indexOf(e.key) === -1) return;
+    var list = Array.prototype.slice.call(tabsEl.children);
+    var i = list.indexOf(document.activeElement);
+    if (i === -1) return;
+    e.preventDefault();
+    var n = list.length;
+    var next = e.key === 'ArrowLeft'  ? (i - 1 + n) % n
+             : e.key === 'ArrowRight' ? (i + 1) % n
+             : e.key === 'Home'       ? 0
+             :                          n - 1;
+    selectPlatform(list[next].dataset.platform, true);
+  });
+
+  var savedPlatform = null;
+  try { savedPlatform = localStorage.getItem('seo-home-platform'); } catch (e) {}
+  selectPlatform(savedPlatform || TABS[0].key);
+
+  /* ---------- 轻提示 ---------- */
+  var toastEl = document.getElementById('toast');
+  var toastTimer = null;
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 2600);
+  }
+
+  /* ---------- 视频弹窗（点击才创建 iframe，关闭即销毁） ---------- */
+  var modal = document.getElementById('modal');
+  var modalPlayer = document.getElementById('modalPlayer');
+  var modalTitle = document.getElementById('modalTitle');
+  var modalClose = document.getElementById('modalClose');
+  var lastFocus = null;
+
+  function openVideo(id, n, title) {
+    lastFocus = document.activeElement;
+    modalTitle.innerHTML = '<span class="idx">' + n + '</span>';
+    modalTitle.appendChild(document.createTextNode(title));
+
+    var frame = document.createElement('iframe');
+    frame.src = 'https://drive.google.com/file/d/' + id + '/preview';
+    frame.allow = 'autoplay; encrypted-media; picture-in-picture';
+    frame.allowFullscreen = true;
+    frame.setAttribute('title', title);
+    modalPlayer.appendChild(frame);
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    modalClose.focus();
+  }
+
+  function closeVideo() {
+    if (!modal.classList.contains('open')) return;
+    modal.classList.remove('open');
+    modalPlayer.innerHTML = '';   /* 销毁 iframe，停止播放 */
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  panelsEl.addEventListener('click', function (e) {
+    var card = e.target.closest('.card');
+    if (!card) return;
+
+    /* 图文项：直接跳原文 */
+    if (card.dataset.url) {
+      window.open(card.dataset.url, '_blank', 'noopener');
+      return;
+    }
+    if (!card.dataset.id) {
+      toast('「' + card.dataset.n + ' ' + card.dataset.title + '」的内容还没上传，Drive ID 待补充');
+      return;
+    }
+    openVideo(card.dataset.id, card.dataset.n, card.dataset.title);
+  });
+
+  modalClose.addEventListener('click', closeVideo);
+  modal.addEventListener('click', function (e) {
+    if (e.target.hasAttribute('data-close')) closeVideo();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { closeVideo(); return; }
+    if (e.key !== 'Tab' || !modal.classList.contains('open')) return;
+
+    /* 焦点陷阱：Tab 只在弹窗内循环，不会跑到背后的页面上。
+       只圈 button，不圈 iframe —— 否则用户点进播放器后无法用键盘操作它 */
+    var f = modal.querySelectorAll('button');
+    if (!f.length) return;
+    var first = f[0], last = f[f.length - 1];
+    if (!modal.contains(document.activeElement)) {
+      e.preventDefault(); first.focus();
+    } else if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  });
+
+  /* ---------- 明暗主题 ---------- */
+  var themeToggle = document.getElementById('themeToggle');
+
+  /* 主题已由 <head> 的预设脚本定好，这里只把状态同步给辅助技术 */
+  function syncThemeButton() {
+    themeToggle.setAttribute('aria-pressed',
+      String(document.documentElement.getAttribute('data-theme') === 'dark'));
+  }
+  syncThemeButton();
+
+  themeToggle.addEventListener('click', function () {
+    var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', cur);
+    syncThemeButton();
+    try { localStorage.setItem('seo-home-theme', cur); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>

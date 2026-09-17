@@ -24,7 +24,7 @@ const VIDEOS = [
   { n: "18", platform: "build", group: "AI 建站与 Astro 架构", id: "1rikUAxFrtjNZgOA7loz_ixPRFpubuB2C", title: "从虚拟主机安装Wordpress程序" },
   { n: "19", platform: "build", group: "AI 建站与 Astro 架构", id: "11CVV0V290XyhImSaBwuWvA5vkUKB6zzh", title: "必须安装Yoast插件和一个Wordpress主题" },
   { n: "20", platform: "build", group: "AI 建站与 Astro 架构", id: "1_x9Qr7nnCG5Al18FNMDm05D7kDYD7FOV", title: "Wordpress对接后台并创建页面、修改页面、配图" },
-  { n: "21", platform: "build", group: "AI 建站与 Astro 架构", type: "text", id: "", url: "https://seogeo.cc/ai-agent-b2b", title: "免费服务器Cloudflare 上 AI 搭建B2B网站" },
+  { n: "21", platform: "build", group: "AI 建站与 Astro 架构", type: "text", id: "", url: "https://seogeo.cc/ai-agent-b2b-static-site-cloudflare-sop", title: "免费服务器Cloudflare 上 AI 搭建B2B网站" },
   { n: "22", platform: "keyword", group: "解密 Semrush", id: "1yQJSi2bmS09xLY_0hqAoa-uJkZTKQGC9", title: "使用Semrush分析一个网站" },
   { n: "23", platform: "keyword", group: "解密 Semrush", id: "1G1Clw7y1HnC1k6ztVsgGAl0CLC0K0mVp", title: "Semrush分析网站外链" },
   { n: "24", platform: "keyword", group: "解密 Semrush", id: "1j1m0lNwzKi4Q4X3jocY1rxtZvaLjx0aE", title: "Semrush调研关键词" },
